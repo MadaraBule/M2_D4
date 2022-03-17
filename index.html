@@ -140,7 +140,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcffc2",endCo
               <div class="valid-feedback">Looks good!</div>
             </div>
           </div>
-          <button class="btn btn-dark" type="submit" value="submit">
+          <button id="infoo" class="btn btn-dark" type="submit" value="submit">
             Submit to Waitlist
           </button>
         </form>
@@ -177,15 +177,16 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcffc2",endCo
         );
       })();
       //get forms info on click
-      document.getElementById("info").onclick =
-      function get() {
+      document.getElementById("infoo").onclick =
+      function onLoad() {
           let name = document.getElementById("validationCustom01")
           let surname = document.getElementById("validationCustom02")
-        let participant =name + surname;
+        let participant = document.createElement(`<li> ${name} + ${surname} </li>`);
         //push the names in waitinglist container inside <ul>
-        let waitinglist = document.getElementById(waiting)
+        let waitinglist = document.getElementById("waiting")
          waitinglist.appendChild(participant);
         }
+        window.onload = onLoad()
 //apply to "assign" button on click function to create random teams
 
 //loop create teams the same amount of times as chosen by user
