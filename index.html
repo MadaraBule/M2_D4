@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+    WELCOME TO THE STRIVE TEAM GENERATOR!
+
+    In this app you will generate teams and assign the participants to them.
+    You will use the Bootstrap components for the elements of your app.
+
+    The features are the following:
+    - The user should be able to add a list of names, find a way to get the user input and fill a list with the new name.
+    - The user should be able to set the number of teams he wants, so that they will be generated. A team is just another list to be displayed.
+    - An "Assign" button will be required in order to launch the team generation functionality.
+    - Every time the user clicks on the "Assign" button, a random name is placed in a team and removed from the initial list.
+    - Each team should be inside a "column" to be responsive.
+    - [EXTRA] Create a button to remove a user from a team, and putting him back in the main list, waiting to be reassigned.
+    - [EXTRA] Create a button to reset the state of the app.
+-->
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+      integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="index.js"></script>
+    <style>
+        body {
+    background-color: rgb(214, 214, 214);
+        }
+      .card {
+        background: linear-gradient(
+          90deg,
+          rgba(126, 165, 255, 1) 0%,
+          rgba(215, 255, 98, 1) 100%
+        );
+      }
+      .navbar {
+        background: -moz-linear-gradient(0deg, rgba(252,255,194,1) 0%, rgba(222,255,96,1) 100%);
+background: -webkit-linear-gradient(0deg, rgba(252,255,194,1) 0%, rgba(222,255,96,1) 100%);
+background: linear-gradient(0deg, rgba(252,255,194,1) 0%, rgba(222,255,96,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcffc2",endColorstr="#deff60",GradientType=1);
+      }
+    </style>
+  </head>
+  <body>
+    <!--nav bar-->
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://user-images.githubusercontent.com/12670730/113008567-6ebdcb80-9177-11eb-91bd-6863196d9cd3.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+        />
+        Team Creator
+      </a>
+    </nav>
+    <!--Cards-->
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="title">Waiting list</h5>
+                        <ul id="waiting">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="title">Team List</h5>
+                        <ul id="teams">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+</div>
+    <!--form-->
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <form class="needs-validation" novalidate>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">First name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustom01"
+                placeholder="First name"
+                value=""
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Last name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustom02"
+                placeholder="Last name"
+                value=""
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+          </div>
+          <button class="btn btn-light" type="submit" value="submit">
+            Submit to Waitlist
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        "use strict";
+        window.addEventListener(
+          "load",
+          function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName("needs-validation");
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(
+              forms,
+              function (form) {
+                form.addEventListener(
+                  "submit",
+                  function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                  },
+                  false
+                );
+              }
+            );
+          },
+          false
+        );
+      })();
+      //try and get elements from form
+      function logToPage() {
+          
+        }
+    </script>
+  </body>
+</html>
