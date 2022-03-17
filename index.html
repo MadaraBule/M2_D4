@@ -176,17 +176,21 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcffc2",endCo
           false
         );
       })();
+      //get forms info on click
       document.getElementById("info").onclick =
       function get() {
           let name = document.getElementById("validationCustom01")
           let surname = document.getElementById("validationCustom02")
         let participant =name + surname;
-      }
-        //push the names in waitinglist
+        //push the names in waitinglist container inside <ul>
         let waitinglist = document.getElementById(waiting)
-         waitinglist.appendChild(`<li> ${name} + ${surname}</li>`);
-     
+         waitinglist.appendChild(participant);
+        }
+//apply to "assign" button on click function to create random teams
 
+//loop create teams the same amount of times as chosen by user
+
+//each team inside a colum? nah, it will be in a list.
     </script>
   </body>
 </html>
